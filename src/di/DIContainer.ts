@@ -1,5 +1,3 @@
-import { DatabaseUserRepository } from "../infrastructures/database/repositories/user/UserRepository";
-import { GetAllUsers } from "../usecases/user/GetAllUsers";
 import { UserDependencies } from "./registers/UserDependencies";
 
 // Dependency Injection

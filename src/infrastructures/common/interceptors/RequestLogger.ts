@@ -17,8 +17,10 @@ export class RequestLogger {
   handle(req: Request, res: Response, next: NextFunction): void {
     const start = Date.now();
     const clientIp = req.ip || req.headers['x-forwarded-for'] || 'unknown';
+
+    const body = ['POST', 'PUT', 'PATCH'].includes(req.method) ? `, Body: ${JSON.stringify(req.body)}` : '';
     
-    this.logger.info(`Incoming request: ${req.method} ${req.originalUrl} from IP: ${clientIp}`);
+    this.logger.info(`Incoming request: ${req.method} ${req.originalUrl} from IP: ${clientIp}${body}`);
 
     res.on('finish', () => {
       const duration = Date.now() - start;
